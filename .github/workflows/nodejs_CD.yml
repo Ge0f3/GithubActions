@@ -22,7 +22,7 @@ jobs:
         docker login -u $DOCKER_HUB -p $DOCKER_KEY
         echo "Logged in success"
         echo "Running the build"
-        docker build -t github_actions .
+        docker build -t geofegeo/github_actions .
         echo 'pushing image..'
         docker push geofegeo/github_actions
         echo "docker image build and pushed'
