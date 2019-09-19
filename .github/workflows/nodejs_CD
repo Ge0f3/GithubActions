@@ -1,0 +1,29 @@
+name: CD - Continous Deployment 
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build 
+      env: 
+        DOCKER_HUB: ${{secrets.DOCKER_HUB}}
+        DOCKER_KEY: ${{secrets.DOCKER_KEY}}
+      run: |
+        ls -l
+        echo "Loggin into Docker"
+        docker login -u $DOCKER_HUB -p $DOCKER_KEY
+        echo "Logged in success"
+        echo "Running the build"
+        docker build -t github_actions .
+        echo 'pushing image..'
+        docker push github_actions
+        echo "docker image build and pushed'
+   
