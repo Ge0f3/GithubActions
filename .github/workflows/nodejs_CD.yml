@@ -24,6 +24,6 @@ jobs:
         echo "Running the build"
         docker build -t github_actions .
         echo 'pushing image..'
-        docker push github_actions
+        docker push geofegeo/github_actions
         echo "docker image build and pushed'
    
